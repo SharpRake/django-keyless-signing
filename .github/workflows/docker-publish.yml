@@ -20,6 +20,12 @@ jobs:
       id-token: write
 
     steps:
+      - name: set lower case owner name
+        run: |
+          echo "OWNER_LC=${OWNER,,}" >>${GITHUB_ENV}
+        env:
+          OWNER: '${{ github.repository_owner }}'
+
       - name: Checkout repository
         uses: actions/checkout@v2
 
@@ -35,7 +41,7 @@ jobs:
         uses: docker/login-action@master
         with:
           registry: ghcr.io
-          username: ${{ github.actor }}
+          username: ${{ OWNER_LC }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push container image
