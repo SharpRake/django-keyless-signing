@@ -49,7 +49,7 @@ jobs:
         uses: docker/build-push-action@master
         with:
           push: true
-          tags: ghcr.io/${{ github.repository }}:latest
+          tags: ghcr.io/sharprake/django-keyless-signing:latest
 
       - name: Sign the container image
         env:
