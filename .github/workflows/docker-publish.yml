@@ -41,7 +41,7 @@ jobs:
         uses: docker/login-action@master
         with:
           registry: ghcr.io
-          username: ${{ OWNER_LC }}
+          username: $OWNER_LC
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push container image
